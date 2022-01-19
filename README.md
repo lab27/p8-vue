@@ -1,4 +1,4 @@
-# p8-test
+# P8 Test Project with Vue.js
 
 ## Project setup
 ```
@@ -19,6 +19,9 @@ yarn build
 ```
 yarn lint
 ```
+
+## Examples
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
