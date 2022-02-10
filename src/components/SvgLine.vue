@@ -3,7 +3,7 @@
     <h2>SVG Line Example</h2>
     <p>
       In this example, we see how we can animate different SVG line properties
-      with Vue.js. (See src/components/SvgLine.vue)
+      with Vue.js. (See /src/components/SvgLine.vue)
     </p>
     <p>Here we use a simple CSS Keyframe animation to animate the <code>stroke-dashoffset</code> property of an SVG line, and then bind the <code>stroke-dasharray</code> property to calculations from the slider value.</p>
     <p>If we want, we can also map the throttle percentage to a Hue value and bind it to the stroke color of the line.</p>
