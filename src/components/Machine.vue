@@ -1,7 +1,7 @@
 <template>
 <section>
   <h2>Slider Rotation Example</h2>
-  <p>In this example, let's use the slider value to set a rotation property on an element. (See src/components/SliderRotation.vue)</p>
+  <p>In this example, let's use the slider value to set a rotation property on an element. (See <a href="https://github.com/lab27/p8-vue/blob/main/src/components/Machine.vue">/src/components/SliderRotation.vue</a>)</p>
   <p>We only have to set the <code>transform-origin</code> property of the image to the x/y values of the pivot point. Then we can simply bind the <code>transform: rotate([x]deg)</code> style declaration to the slider value, where <code>x</code> = the slider value.</p>
   
   <p>The blue arrow is a separate html element that we can also rotate inversely.</p>

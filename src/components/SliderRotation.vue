@@ -1,21 +1,26 @@
 <template>
 <section>
   <h2>Slider Rotation Example</h2>
-  <p>In this example, let's use the slider value to set a rotation property on an element. (See /src/components/SliderRotation.vue)</p>
+  <p>In this example, let's use the slider value to set a rotation property on an element. (See <a href="https://github.com/lab27/p8-vue/blob/main/src/components/SliderRotation.vue">/src/components/SliderRotation.vue</a>)</p>
   <p>We only have to set the <code>transform-origin</code> property of the image to the x/y values of the pivot point. Then we can simply bind the <code>transform: rotate([x]deg)</code> style declaration to the slider value, where <code>x</code> = the slider value.</p>
   
   <p>The blue arrow is a separate html element that we can also rotate inversely.</p>
+  <!-- Similar to the first example, this slider's value is bound to a property called "rotation" -->
   <input type="range" min="20" max="90" value="90" class="slider" id="myRange2" step="1" v-model="rotation"> 
   <br>
+
+  <!-- and here's where we render the value of "rotation" -->
   <span>Plate angle ϕ: {{rotation}}°</span>
   <br>
   <br>
   <input type="range" min="0" max="100" value="50" class="slider" id="myRange3" step="1" v-model="arrowLength"> 
   <br>
   <span>Arrow length: {{arrowLength}}</span>
+  <!-- by using the shorthand ":" before the style attribute, we are binding the style declaration to a reactive property, in this case a string literal with the current value of "rotation" included -->
   <div class="graphic" :style="`transform: scale(.75) rotate(${rotation-90}deg)`">
 
   <img src="/img/panel.png" alt="Panel To Rotate" class="panel" >
+  <!-- with the "v-show" directive, we are telling Vue to only show this element if the condition resolves to true; in this case, if the value of  "arrowLength" is greater than 0 -->
   <div class="arrow-wrapper" :style="`transform: rotate(${(rotation * -1)+90}deg)`" v-show="arrowLength > 0">
     <div class="arrow-stem" :style="`width: ${arrowLength}%`"></div>
     <div class="arrow-head"></div>
