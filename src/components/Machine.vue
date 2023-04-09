@@ -5,30 +5,26 @@
   <p>We only have to set the <code>transform-origin</code> property of the image to the x/y values of the pivot point. Then we can simply bind the <code>transform: rotate([x]deg)</code> style declaration to the slider value, where <code>x</code> = the slider value.</p>
   
   <p>The blue arrow is a separate html element that we can also rotate inversely.</p>
-  <input type="range" min="20" max="90" value="90" class="slider" id="myRange2" step="1" v-model="rotation"> 
-  <br>
-  <span>Plate angle ϕ: {{rotation}}°</span>
-  <br>
-  <br>
-  <input type="range" v-model="valve" min="278" max="4444" step="1" />
-  <br>
-  <span>Throttle Open: {{ throttleOpenPercent }}%</span>
+
+  
+  
+  <div class="machine-wrapper">
 
 
     <!-- Machine -->
-   <svg id="machine" xmlns="http://www.w3.org/2000/svg" width="1541" height="900" viewBox="0 0 1541 900">
-  
-    <defs>
-    <!-- arrowhead marker definition -->
-    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+    <svg id="machine" xmlns="http://www.w3.org/2000/svg" width="1541" height="900" viewBox="0 0 1541 900">
+      
+      <defs>
+        <!-- arrowhead marker definition -->
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
         markerWidth="6" markerHeight="6"
         orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
-
-    <!-- simple dot marker definition -->
-    <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5"
-        markerWidth="5" markerHeight="5">
+        <path d="M 0 0 L 10 5 L 0 10 z" />
+      </marker>
+      
+      <!-- simple dot marker definition -->
+      <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5"
+      markerWidth="5" markerHeight="5">
       <circle cx="5" cy="5" r="5" fill="red" />
     </marker>
   </defs>
@@ -36,10 +32,10 @@
   <path d="M461,435l-11.55,20h23.1Zm2,83V453h-4v65Z"/>
   <path class="cls-1" d="M1266,415c0,134.76-109.24,244-244,244q-4.51,0-9-.16v5q4.49.17,9,.16c137.52,0,249-111.48,249-249v-1h-5Z"/>
   <line class="stream" x1="959" y1="414.5" x2="340" y2="414.5" 
-        :stroke="`hsl(${waterHue}, 50%, 50%)`"
-        stroke-width="10"
-        :style="`stroke-dasharray: ${(100-throttleOpenPercent) + 10} ${throttleOpenPercent+20};animation-duration:${animationDuration}ms`"
-        />
+  :stroke="`hsl(${waterHue}, 85%, 76%)`"
+  stroke-width="38"
+  :style="`stroke-dasharray: ${flowDashArray};animation-duration:${animationDuration}ms`"
+  />
   <g id="rotatingPart" :style="`transform: rotate(${rotation-90}deg)`">
     <rect class="cls-2" x="853" y="221" width="127" height="389"/>
     <rect class="cls-3" x="998" y="278" width="22" height="281"/>
@@ -58,27 +54,39 @@
     <line class="cls-8" x1="1016.92" y1="407.08" x2="1001.37" y2="422.63"/>
     <rect class="cls-9" x="1009" y="414" width="1" height="1"/>
     <line class="stream" x2="970.5" y2="380" x1="970.5" y1="77"
-       :stroke="`hsl(${waterHue}, 50%, 50%)`"
-        :stroke-width="`${rotation/10}`"
-        :style="`stroke-dasharray: ${(100-throttleOpenPercent) + 10} ${throttleOpenPercent+20};animation-duration:${animationDuration}ms`"
+    :stroke="`hsl(${waterHue}, 85%, 76%)`"
+    :stroke-width="`${(rotation/10)+10}`"
+    :style="`stroke-dasharray: ${flowDashArray};animation-duration:${animationDuration}ms`"
     />
     <line class="stream" x1="970.5" y1="753" x2="970.5" y2="440"
-       :stroke="`hsl(${waterHue}, 50%, 50%)`"
-        stroke-width="10"
-        :style="`stroke-dasharray: ${(100-throttleOpenPercent) + 10} ${throttleOpenPercent+20};animation-duration:${animationDuration}ms`"
+    :stroke="`hsl(${waterHue}, 85%, 76%)`"
+    stroke-width="36"
+    :style="`stroke-dasharray: ${flowDashArray};animation-duration:${animationDuration}ms`"
     />
   </g>
   <path class="cls-10" d="M1022,415h499"/>
   <path d="M1221,468.06a6.22,6.22,0,0,0,3.85-.9c.82-.62,1.22-1.75,1.22-3.37v-.53a19.23,19.23,0,0,1-9.73-2.38q-4.54-2.46-4.63-8.24.09-5.79,4.63-8.26a20.17,20.17,0,0,1,9.73-2.34v-.26c0-1.65-.4-2.79-1.22-3.42a6.53,6.53,0,0,0-3.85-.85v-.94h15.24v.94a6.45,6.45,0,0,0-3.81.85q-1.26.94-1.26,3.42V442a20.36,20.36,0,0,1,9.82,2.34q4.41,2.47,4.54,8.26-.13,5.78-4.54,8.24a19.41,19.41,0,0,1-9.82,2.38v.53a4,4,0,0,0,1.26,3.37,6.14,6.14,0,0,0,3.81.9V469H1221Zm5.07-24.63q-8.88.1-9,9.21.13,9.14,9,9.22Zm5.1,18.43q8.83-.09,9-9.22-.2-9.12-9-9.21Z"/>
   <rect class="cls-11" x="1.5" y="360.5" width="253" height="108"/>
-  <path class="cls-12" d="M257.5,361l106,31.4v43.18L257.5,468Z"/>
-  <rect class="cls-12" x="99.5" y="279.5" width="57" height="81"/>
-  <rect class="cls-13" x="1.5" y="1.5" width="244" height="279" rx="53.5"/>
+  <path class="cls-12 nozzle" d="M257.5,361l106,31.4v43.18L257.5,468Z"/>
+  <rect class="cls-12 pole" x="99.5" y="279.5" width="57" height="81"/>
+  <rect class="cls-13" x="1.5" y="1.5" width="244" height="279" rx="20"/>
   <path d="M83.07,250.14a2.77,2.77,0,0,0,1.35-.42A2.16,2.16,0,0,0,85,248V237.38a2.23,2.23,0,0,0-.4-1.53,2.75,2.75,0,0,0-1.55-.55v-.88h6.82V237a9.67,9.67,0,0,1,1.74-1.83A5.67,5.67,0,0,1,95.11,234a5,5,0,0,1,3.36,1,5.66,5.66,0,0,1,1.26,1.9H100a9.62,9.62,0,0,1,2-1.88,5.49,5.49,0,0,1,3.22-1,5.08,5.08,0,0,1,3.34,1.21,4.72,4.72,0,0,1,1.45,3.84v9a2.2,2.2,0,0,0,.41,1.6,2.75,2.75,0,0,0,1.42.44V251h-8.54v-.86a2.72,2.72,0,0,0,1.37-.48,2.16,2.16,0,0,0,.39-1.56v-8.72a4.64,4.64,0,0,0-.42-2.18,1.61,1.61,0,0,0-1.57-.77,3.12,3.12,0,0,0-2,.86c-.68.56-1,1-1,1.18v9.63a2.23,2.23,0,0,0,.35,1.51,2.85,2.85,0,0,0,1.32.53V251H93.26v-.86a2.72,2.72,0,0,0,1.36-.46,2.14,2.14,0,0,0,.4-1.58v-8.72a5,5,0,0,0-.39-2.16,1.58,1.58,0,0,0-1.59-.79,2.91,2.91,0,0,0-2.06.91c-.63.6-1,1-1,1.13v9.63a2.31,2.31,0,0,0,.33,1.51,2.76,2.76,0,0,0,1.32.53V251H83.07Zm37-2.64a4.38,4.38,0,0,0,.39,1.62,2.18,2.18,0,0,0,2.11,1.23,2.66,2.66,0,0,0,2.6-1.95,19,19,0,0,0,.09-10.39,2.61,2.61,0,0,0-2.64-2,2.3,2.3,0,0,0-1.86.86,2.58,2.58,0,0,0-.69,1.21Zm0-20.83V236a8.29,8.29,0,0,1,1.57-1.25,5.55,5.55,0,0,1,2.84-.76,5.87,5.87,0,0,1,4.89,2.38,9.15,9.15,0,0,1,1.86,5.83c0,3-.79,5.27-2.37,6.89a7.87,7.87,0,0,1-5.87,2.41,5.63,5.63,0,0,1-2.55-.56,8.84,8.84,0,0,1-2.07-1.48l-2.83,2H115V229.62a2.12,2.12,0,0,0-.41-1.51,2.73,2.73,0,0,0-1.51-.56v-.88Zm20.36,22.27a2.79,2.79,0,0,0,1.63-.52,6.5,6.5,0,0,0,1-1v-5.25a7.53,7.53,0,0,0-2.53,1.1,3.85,3.85,0,0,0-1.84,3.27,2.65,2.65,0,0,0,.53,1.8A1.62,1.62,0,0,0,140.41,248.94Zm-7-1.3a4.33,4.33,0,0,1,2.34-3.85,31.86,31.86,0,0,1,7.33-2.86v-2.62a3.43,3.43,0,0,0-.69-2.36,3.06,3.06,0,0,0-2.39-.77,3.11,3.11,0,0,0-1.6.37,1,1,0,0,0-.61.9.75.75,0,0,0,.07.35,1.18,1.18,0,0,0,.21.3l.21.24a2.62,2.62,0,0,1,.39.67,2.12,2.12,0,0,1-.53,2.34,2.43,2.43,0,0,1-1.57.54,2.66,2.66,0,0,1-1.77-.61,2.22,2.22,0,0,1-.72-1.78,3.72,3.72,0,0,1,2-3.29,9,9,0,0,1,4.8-1.21,10.19,10.19,0,0,1,5.11,1.18q2,1.2,2,4.39v8.72a1.15,1.15,0,0,0,.2.67.58.58,0,0,0,.45.27.84.84,0,0,0,.37-.08,2.17,2.17,0,0,0,.53-.44l.54.76a5.77,5.77,0,0,1-2.33,1.72,4.68,4.68,0,0,1-1.71.32,2.81,2.81,0,0,1-2.34-.93,3.55,3.55,0,0,1-.61-1.57,8.41,8.41,0,0,1-3.38,2.11,6.92,6.92,0,0,1-2.25.39,4.63,4.63,0,0,1-2.76-.93A3.42,3.42,0,0,1,133.43,247.64Zm17.74,2.5a2.67,2.67,0,0,0,1.44-.49,2,2,0,0,0,.44-1.43l0-1.05v-9.79a2.3,2.3,0,0,0-.38-1.53,2.65,2.65,0,0,0-1.53-.55v-.88H158v2.83a13.67,13.67,0,0,1,2.27-2.37,4.09,4.09,0,0,1,2.6-.88,3.07,3.07,0,0,1,2,.72,2.78,2.78,0,0,1,.26,3.82,2.08,2.08,0,0,1-1.61.68,2.45,2.45,0,0,1-2-1.07c-.55-.71-.94-1.07-1.16-1.07a2,2,0,0,0-1.46.9,3.87,3.87,0,0,0-.72,2.53v6.8a3.27,3.27,0,0,0,.51,2.25,4.09,4.09,0,0,0,2.07.58V251h-9.59Z"/>
   <circle class="cls-14" cx="124" cy="122" r="88"/>
   <path d="M490.36,326q6.75,0,9.49-5.57a13.31,13.31,0,0,0,1.41-5.89,8.17,8.17,0,0,0-1.43-4.88q-1.43-2-5.13-2a3.82,3.82,0,0,0-1.45.2,1,1,0,0,0-.56.69l-4.24,15.19a6.4,6.4,0,0,0-.15.66,3,3,0,0,0,0,.43.94.94,0,0,0,.41.9A3.77,3.77,0,0,0,490.36,326Zm-7.65.48a3.11,3.11,0,0,0,1.5-.39,3.51,3.51,0,0,0,1.05-1.9l3.79-13.71c.12-.41.2-.77.26-1.06a3.55,3.55,0,0,0,.11-.79,1.08,1.08,0,0,0-.52-1,4.29,4.29,0,0,0-1.89-.33v-.5h8a17.37,17.37,0,0,1,3.9.39,7.32,7.32,0,0,1,3.12,1.62,8.16,8.16,0,0,1,1.7,2.15,8.91,8.91,0,0,1,1,4.22,10.84,10.84,0,0,1-3.59,8.09A14.24,14.24,0,0,1,490.92,327h-8.21Zm47-5.27v2.12H514.08v-2.12Zm0-6.25v2.12H514.08V315Zm16.47,11.5a3.42,3.42,0,0,0,2.63-1,3.48,3.48,0,0,0,.89-2.42,3.71,3.71,0,0,0-1-2.67,26.91,26.91,0,0,0-3.88-3.1,4.88,4.88,0,0,0-1.89,2.12,6.11,6.11,0,0,0-.59,2.51,4.92,4.92,0,0,0,1.06,3.3A3.47,3.47,0,0,0,546.2,326.48Zm.19-11.56a9.46,9.46,0,0,0,2-1.68,4.34,4.34,0,0,0,.94-2.82,3.54,3.54,0,0,0-.89-2.43,3.35,3.35,0,0,0-2.68-1,3.19,3.19,0,0,0-2.3.88,2.86,2.86,0,0,0-.91,2.14,4,4,0,0,0,1.06,2.65A12.64,12.64,0,0,0,546.39,314.92Zm-2.33,1.76a17.19,17.19,0,0,1-2.72-2.56,5.12,5.12,0,0,1-1.12-3.21,4.29,4.29,0,0,1,1.65-3.39,6.47,6.47,0,0,1,4.31-1.39,5.57,5.57,0,0,1,3.88,1.31,4.06,4.06,0,0,1,1.43,3.06,4.34,4.34,0,0,1-1.46,3.18,14.57,14.57,0,0,1-2.74,1.85,19.11,19.11,0,0,1,3.67,3.33,5.16,5.16,0,0,1,1.12,3.33,4.73,4.73,0,0,1-1.65,3.66,6.27,6.27,0,0,1-4.39,1.48,6.72,6.72,0,0,1-4.23-1.36,4.38,4.38,0,0,1-1.76-3.62,5.13,5.13,0,0,1,1.23-3.39A14,14,0,0,1,544.06,316.68Zm10.34,9.93a3.41,3.41,0,0,0,1.57-.4,2,2,0,0,0,.61-1.75v-7.83a2.45,2.45,0,0,0-.3-1.47,1.2,1.2,0,0,0-1-.34,3,3,0,0,0-.49,0,1.66,1.66,0,0,0-.36.1v-.53l1.09-.36c.39-.13,1-.37,1.94-.71s1.37-.52,1.42-.52a.09.09,0,0,1,.09.08,1.57,1.57,0,0,1,0,.29v2a11.34,11.34,0,0,1,2.58-1.88,5.15,5.15,0,0,1,2.24-.53,3.12,3.12,0,0,1,2.49,1.06,4.65,4.65,0,0,1,.8,1.56,12.65,12.65,0,0,1,2-1.68,5.29,5.29,0,0,1,2.94-.94,3.16,3.16,0,0,1,3.25,2,9.6,9.6,0,0,1,.47,3.54v6.28a1.86,1.86,0,0,0,.47,1.47,3.49,3.49,0,0,0,1.73.5V327h-6.83v-.42a3.06,3.06,0,0,0,1.73-.53,2.4,2.4,0,0,0,.42-1.67v-6.52a5.59,5.59,0,0,0-.32-2.17,2.16,2.16,0,0,0-2.19-1.24,3.53,3.53,0,0,0-2,.65,10.46,10.46,0,0,0-1.37,1.21v7.75a3.37,3.37,0,0,0,.42,1.86,2.18,2.18,0,0,0,1.83.69V327h-6.95v-.39a2.88,2.88,0,0,0,1.84-.7,5,5,0,0,0,.39-2.53v-4.24a11.5,11.5,0,0,0-.3-3.21,2,2,0,0,0-2.12-1.48,3.55,3.55,0,0,0-1.82.52,5.6,5.6,0,0,0-1.57,1.31v8.28a2.43,2.43,0,0,0,.39,1.59,2.48,2.48,0,0,0,1.76.46V327H554.4Zm24.13,0a3.41,3.41,0,0,0,1.57-.4,2,2,0,0,0,.61-1.75v-7.83a2.45,2.45,0,0,0-.3-1.47,1.22,1.22,0,0,0-1-.34,2.93,2.93,0,0,0-.49,0,1.66,1.66,0,0,0-.36.1v-.53l1.09-.36c.39-.13,1-.37,1.94-.71s1.37-.52,1.42-.52a.09.09,0,0,1,.09.08,1.57,1.57,0,0,1,0,.29v2a11.13,11.13,0,0,1,2.58-1.88,5.15,5.15,0,0,1,2.24-.53,3.14,3.14,0,0,1,2.49,1.06,4.65,4.65,0,0,1,.8,1.56,12.65,12.65,0,0,1,2-1.68,5.29,5.29,0,0,1,2.94-.94,3.16,3.16,0,0,1,3.25,2,9.82,9.82,0,0,1,.47,3.54v6.28a1.86,1.86,0,0,0,.47,1.47,3.49,3.49,0,0,0,1.73.5V327h-6.83v-.42a3,3,0,0,0,1.72-.53,2.34,2.34,0,0,0,.43-1.67v-6.52a5.59,5.59,0,0,0-.32-2.17,2.16,2.16,0,0,0-2.19-1.24,3.53,3.53,0,0,0-2,.65,11.12,11.12,0,0,0-1.38,1.21v7.75a3.36,3.36,0,0,0,.43,1.86,2.18,2.18,0,0,0,1.83.69V327h-6.95v-.39a2.82,2.82,0,0,0,1.83-.7,4.87,4.87,0,0,0,.4-2.53v-4.24a11.5,11.5,0,0,0-.3-3.21,2,2,0,0,0-2.12-1.48,3.53,3.53,0,0,0-1.82.52,5.46,5.46,0,0,0-1.57,1.31v8.28a2.43,2.43,0,0,0,.39,1.59,2.46,2.46,0,0,0,1.75.46V327h-6.88Z"/>
-  <text id="mbarVal" class="cls-15" transform="translate(66.75 141)">{{valve}}</text>
+  <text id="mbarVal" class="cls-15" transform="translate(124.75 141)">{{valve}}</text>
 </svg>
+      <div class="controls">
+  
+        <input type="range" min="20" max="90" value="90" class="slider" id="myRange2" step="1" v-model="rotation"> 
+        <br>
+        <span>Plate angle ϕ: {{ rotation }}°</span>
+        <br>
+        <br>
+        <input type="range" v-model="valve" min="278" max="4444" step="1" class="slider" />
+        <br>
+        <span>Velocity: {{ throttleOpenPercent }}%</span>
+      </div>
+</div>
 
 </section>
 </template>
@@ -87,29 +95,33 @@
 export default {
   name: 'SliderTest',
   computed: {
-      throttleOpenPercent() {
+    throttleOpenPercent() {
       const throttleOpenPercent = (this.valve - 278) / (4444 - 278);
       return Math.floor(throttleOpenPercent * 100);
     },
     animationDuration() {
-      return 6000 - this.valve;
+      return (3000 - this.valve) + 10 * this.throttleOpenPercent/1.6;
     },
     waterHue() {
-      return Math.floor(this.map(this.throttleOpenPercent, 0, 100, 180, 360))
+      // return Math.floor(this.map(this.throttleOpenPercent, 0, 100, 180, 360))
+      return 200;
     },
+    flowDashArray() {
+      return `${(this.throttleOpenPercent) + 10 } ${ 100 - (this.throttleOpenPercent * 1.2)}`
+    }
   },
   data() {
     return {
       rotation: 90,
       arrowLength: 50,
-            valve: 910,
+      valve: 910,
     }
   },
   methods: {
     onChange(value) {
       this.value = value
     },
-        map(n, start1, end1, start2, end2) {
+    map(n, start1, end1, start2, end2) {
       return ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
     },
   }
@@ -117,14 +129,22 @@ export default {
 </script>
 
 <style>
+body {
+  color: #333;
+}
 #rotatingPart {
   transform-origin: 1009px 414px;
 }
 
+.machine-wrapper {
+  position: relative;
+  padding: 1rem;
+}
 
 #machine {
   width: 100%;
-  transform: scale(.8);
+  height: auto;
+  /* transform: scale(.8); */
   margin: 0 auto;
   overflow: visible;
 }
@@ -161,8 +181,13 @@ export default {
   margin-left: auto;
 }
 
+svg path {
+  fill: #333;
+}
+
  .cls-1 {
         fill-rule: evenodd;
+        fill: #333;
       }
 
       .cls-10, .cls-2, .cls-4, .cls-5, .cls-8 {
@@ -170,7 +195,7 @@ export default {
       }
 
       .cls-2 {
-        stroke: #ff5b00;
+        stroke: #FF5D64;
         stroke-dasharray: 10 10;
       }
 
@@ -179,11 +204,15 @@ export default {
       }
 
       .cls-3 {
-        fill: #d9dad7;
+        fill: #efefef;
       }
 
-      .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-3, .cls-4, .cls-5, .cls-7, .cls-8 {
-        stroke: #000;
+      .cls-10, .cls-14, .cls-3, .cls-4, .cls-5, .cls-7, .cls-8 {
+        stroke: #333;
+      }
+
+      .cls-14 {
+        stroke: #A2A2E7;
       }
 
       .cls-10, .cls-4 {
@@ -195,7 +224,7 @@ export default {
       }
 
       .cls-6 {
-        fill: #ff5b00;
+        fill: #FF5D64;
       }
 
       .cls-7 {
@@ -204,7 +233,11 @@ export default {
       }
 
       .cls-12, .cls-9 {
-        fill: #c4c4c4;
+        fill: #DADAF5;
+      }
+
+      .pole {
+        fill: #c5c5dd;
       }
 
       .cls-10 {
@@ -212,7 +245,7 @@ export default {
       }
 
       .cls-11 {
-        fill: #379ff4;
+        fill: #DADAF5;
       }
 
       .cls-11, .cls-12, .cls-13 {
@@ -220,7 +253,7 @@ export default {
       }
 
       .cls-13 {
-        fill: #acddf6;
+        fill: #DADAF5;
       }
 
       .cls-14 {
@@ -230,12 +263,18 @@ export default {
 
       .cls-15 {
         font-size: 50px;
-        font-family: Monaco;
+        font-family: Courier, monospace;
+        text-anchor: middle;
+      }
+
+      .nozzle {
+        transform: translateX(-1px);
       }
 
 .stream {
   animation: flow linear infinite;
-  stroke-linecap:round;
+  /* stroke-linecap:round; */
+  /* stroke-width: 40px; */
 }
 
 @keyframes flow {
@@ -246,4 +285,52 @@ export default {
     stroke-dashoffset: 00;
   }
 }
+
+/* General styles for the slider */
+.slider {
+  -webkit-appearance: none; /* Removes default appearance for Webkit browsers */
+  appearance: none; /* Removes default appearance for modern browsers */
+  width: 100%; /* Sets the width of the slider */
+  height: 5px; /* Sets the height of the slider track */
+  background-color: #ddd; /* Sets the background color of the slider track */
+  outline: none; /* Removes the focus outline */
+  cursor: pointer; /* Changes the cursor to a pointer when hovering over the slider */
+}
+
+/* Styles for the slider thumb */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Removes default appearance for Webkit browsers */
+  appearance: none; /* Removes default appearance for modern browsers */
+  width: 20px; /* Sets the width of the slider thumb */
+  height: 20px; /* Sets the height of the slider thumb */
+  background-color: #4545CF; /* Sets the background color of the slider thumb */
+  border-radius: 50%; /* Makes the slider thumb circular */
+}
+
+/* Styles for the slider thumb when using Firefox */
+.slider::-moz-range-thumb {
+  width: 20px; /* Sets the width of the slider thumb */
+  height: 20px; /* Sets the height of the slider thumb */
+  background-color: #4545CF; /* Sets the background color of the slider thumb */
+  border-radius: 50%; /* Makes the slider thumb circular */
+}
+
+.controls {
+  position: relative;
+  width: 100%;
+  /* padding: 1rem; */
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 600px) {
+  
+  .controls {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    width: 50%;
+  }
+}
+
 </style>
